@@ -1,6 +1,6 @@
 {
   "name": "jviz-toast",
-  "description": "Jviz button webcomponent",
+  "description": "Jviz dialog element",
   "ignore": [ "**/.*", "node_modules", "bower_components" ],
   "dependencies":
   {
