@@ -1,0 +1,132 @@
+<!--
+@license
+Copyright (c) 2016 The Jviz Project Authors. All rights reserved.
+The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob/dev/LICENSE
+-->
+
+<!-- Import components -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../jviz/jviz.html">
+<link rel="import" href="../jviz-styles/jviz-styles.html">
+
+<!-- Toast component -->
+<dom-module id="jviz-toast">
+  <template>
+    <style>
+
+      /* Toast variables */
+      :host
+      {
+        --jviz-toast-color-background: var(--jviz-grey);
+        --jviz-toast-color-text: var(--jviz-grey-over);
+        --jviz-toast-width: 600px;
+        --jviz-toast-padding: 15px;
+      }
+      /* Toast style */
+      :host
+      {
+        @apply(--jviz-bold);
+        color: var(--jviz-toast-color-text);
+        font-size: 14px;
+        display: inline-block;
+        width: calc(var(--jviz-toast-width) - 2 * var(--jviz-toast-padding));
+        height: 40px;
+        line-height: 40px;
+        transition: all 0.3s;
+        border-radius: 5px;
+        position: fixed;
+        top: -50px;
+        left: calc(50% - var(--jviz-toast-width) / 2);
+        z-index: 4000;
+        padding-left: var(--jviz-toast-padding);
+        padding-right: var(--jviz-toast-padding);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background-color: var(--jviz-toast-color-background);
+      }
+
+      /* Open toast */
+      :host[toast-open]{ top: 40px; }
+
+    </style>
+    <content></content>
+  </template>
+</dom-module>
+
+<!-- Toast logic -->
+<script>
+
+//Main toast object
+var jviz_toast = { is: 'jviz-toast' };
+
+//Toast properties
+jviz_toast.properties = {};
+jviz_toast.properties.toastWidth = { type: String, reflectToAttribute: true, observer: 'update_width', value: '600px' };
+jviz_toast.properties.toastColor = { type: String, reflectToAttribute: true, observer: 'update_color' };
+jviz_toast.properties.toastDuration = { type: Number, reflectToAttribute: true, value: 3000 };
+jviz_toast.properties.toastOpen = { type: Boolean, reflectToAttribute: true };
+
+//Update the toast width
+jviz_toast.update_width = function(value)
+{
+  //Update the toast width variable
+  this.customStyle['--jviz-toast-width'] = value.replace('px', '').replace('%', '') + 'px';
+
+  //Update the styles
+  this.updateStyles();
+};
+
+//Update the toast color
+jviz_toast.update_color = function(value)
+{
+  //Update the toast background color
+  this.customStyle['--jviz-toast-color-background'] = 'var(--jviz-' + value + ')';
+
+  //Update the toast text color
+  this.customStyle['--jviz-toast-color-text'] = 'var(--jviz-' + value + '-over)';
+
+  //Update the styles
+  this.updateStyles();
+};
+
+//Get the duration value
+jviz_toast.get_duration = function(){ return this.toastDuration; }
+
+//Set the duration value
+jviz_toast.set_duration = function(value)
+{
+  //Update the toast value
+  this.toastDuration = Number(value);
+};
+
+//Show the toast
+jviz_toast.show = function()
+{
+  //Save this
+  var self = this;
+
+  //Display the toast
+  this.toastOpen = true;
+
+  //Set the time out function
+  //setTimeout(function(){ return self.hide(); }, this.toastDuration);
+};
+
+//Hide the toast
+jviz_toast.hide = function()
+{
+  //Check if toast is visible
+  if(this.toastOpen === true)
+  {
+    //Change the toast open value
+    this.toastOpen = false;
+  }
+
+  //Continue
+  return;
+};
+
+</script>
+
+<!-- Toast register -->
+<script> Polymer(jviz_toast); </script>
