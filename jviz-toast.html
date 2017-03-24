@@ -76,6 +76,12 @@ jviz_toast.update_width = function(value)
   this.updateStyles();
 };
 
+//Get the toast width
+jviz_toast.get_width = function(){ return this.toastWidth; };
+
+//Set the toast width
+jviz_toast.set_width = function(value){ this.toastWidth = value; };
+
 //Update the toast color
 jviz_toast.update_color = function(value)
 {
@@ -89,15 +95,17 @@ jviz_toast.update_color = function(value)
   this.updateStyles();
 };
 
+//Set the toast color
+jviz_toast.set_color = function(value){ this.toastColor = value.toString().trim(); };
+
+//Get the toast color
+jviz_toast.get_color = function(){ return this.toastColor; };
+
 //Get the duration value
 jviz_toast.get_duration = function(){ return this.toastDuration; }
 
 //Set the duration value
-jviz_toast.set_duration = function(value)
-{
-  //Update the toast value
-  this.toastDuration = Number(value);
-};
+jviz_toast.set_duration = function(value){ this.toastDuration = Number(value); };
 
 //Show the toast
 jviz_toast.show = function()
