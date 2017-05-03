@@ -69,7 +69,7 @@ jviz_toast.properties.text = { type: String, reflectToAttribute: false, value: '
 jviz_toast._update_width = function(value)
 {
   //Update the toast width variable
-  this.customStyle['--jviz-toast-width'] = value.replace('px', '').replace('%', '') + 'px';
+  this.customStyle['--jviz-toast-width'] = value;
 
   //Update the styles
   this.updateStyles();
