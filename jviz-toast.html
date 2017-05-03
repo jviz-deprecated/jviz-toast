@@ -47,7 +47,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
       /* Visible toast */
       :host[visible]{ top: 40px; }
     </style>
-    <content></content>
+    {{ text }}
   </template>
 </dom-module>
 
@@ -63,6 +63,7 @@ jviz_toast.properties.width = { type: String, reflectToAttribute: true, observer
 jviz_toast.properties.color = { type: String, reflectToAttribute: true, observer: '_update_color' };
 jviz_toast.properties.duration = { type: Number, reflectToAttribute: true, value: 3000 };
 jviz_toast.properties.visible = { type: Boolean, reflectToAttribute: true };
+jviz_toast.properties.text = { type: String, reflectToAttribute: false, value: '' };
 
 //Update the toast width
 jviz_toast._update_width = function(value)
