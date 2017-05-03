@@ -9,3 +9,16 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 
 <!-- Toast test element -->
 <jviz-toast id="test" color="grey" width="500px">This is my toast message</jviz-toast>
+
+<!-- Toast logic -->
+<script>
+  //Initialize the toast element
+  var el = null;
+
+  //document ready
+  jviz.dom.ready(function()
+  {
+    //Initialize the element
+    el = jviz.dom.id('test');
+  });
+</script>
