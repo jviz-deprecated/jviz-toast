@@ -136,6 +136,9 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
   //Display a done message
   jviz_toast.done = function(text, duration){ return this._custom('green', text, duration); };
 
+  //Display an info message
+  jviz_toast.info = function(text, duration){ return this._custom('blue', text, duration); };
+
   //Register the toast element
   Polymer(jviz_toast);
 </script>
