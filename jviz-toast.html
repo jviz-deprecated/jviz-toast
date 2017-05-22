@@ -53,66 +53,64 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
 
 <!-- Toast logic -->
 <script>
+  //Main toast object
+  var jviz_toast = { is: 'jviz-toast' };
 
-//Main toast object
-var jviz_toast = { is: 'jviz-toast' };
+  //Toast properties
+  jviz_toast.properties = {};
+  jviz_toast.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '600px' };
+  jviz_toast.properties.color = { type: String, reflectToAttribute: true, observer: '_update_color' };
+  jviz_toast.properties.duration = { type: Number, reflectToAttribute: true, value: 3000 };
+  jviz_toast.properties.visible = { type: Boolean, reflectToAttribute: true };
+  jviz_toast.properties.text = { type: String, reflectToAttribute: false, value: '' };
 
-//Toast properties
-jviz_toast.properties = {};
-jviz_toast.properties.width = { type: String, reflectToAttribute: true, observer: '_update_width', value: '600px' };
-jviz_toast.properties.color = { type: String, reflectToAttribute: true, observer: '_update_color' };
-jviz_toast.properties.duration = { type: Number, reflectToAttribute: true, value: 3000 };
-jviz_toast.properties.visible = { type: Boolean, reflectToAttribute: true };
-jviz_toast.properties.text = { type: String, reflectToAttribute: false, value: '' };
-
-//Update the toast width
-jviz_toast._update_width = function(value)
-{
-  //Update the toast width variable
-  this.customStyle['--jviz-toast-width'] = value;
-
-  //Update the styles
-  this.updateStyles();
-};
-
-//Update the toast color
-jviz_toast._update_color = function(value)
-{
-  //Update the toast background color
-  this.customStyle['--jviz-toast-color-background'] = 'var(--jviz-' + value + ')';
-
-  //Update the toast text color
-  this.customStyle['--jviz-toast-color-text'] = 'var(--jviz-' + value + '-over)';
-
-  //Update the styles
-  this.updateStyles();
-};
-
-//Show the toast
-jviz_toast.show = function()
-{
-  //Save this
-  var self = this;
-
-  //Display the toast
-  this.visible = true;
-
-  //Set the time out function
-  setTimeout(function(){ return self.hide(); }, this.duration);
-};
-
-//Hide the toast
-jviz_toast.hide = function()
-{
-  //Check if toast is visible
-  if(this.visible === true)
+  //Update the toast width
+  jviz_toast._update_width = function(value)
   {
-    //Change the toast open value
-    this.visible = false;
-  }
-};
+    //Update the toast width variable
+    this.customStyle['--jviz-toast-width'] = value;
 
-//Register the toast element
-Polymer(jviz_toast);
+    //Update the styles
+    this.updateStyles();
+  };
 
+  //Update the toast color
+  jviz_toast._update_color = function(value)
+  {
+    //Update the toast background color
+    this.customStyle['--jviz-toast-color-background'] = 'var(--jviz-' + value + ')';
+
+    //Update the toast text color
+    this.customStyle['--jviz-toast-color-text'] = 'var(--jviz-' + value + '-over)';
+
+    //Update the styles
+    this.updateStyles();
+  };
+
+  //Show the toast
+  jviz_toast.show = function()
+  {
+    //Save this
+    var self = this;
+
+    //Display the toast
+    this.visible = true;
+
+    //Set the time out function
+    setTimeout(function(){ return self.hide(); }, this.duration);
+  };
+
+  //Hide the toast
+  jviz_toast.hide = function()
+  {
+    //Check if toast is visible
+    if(this.visible === true)
+    {
+      //Change the toast open value
+      this.visible = false;
+    }
+  };
+
+  //Register the toast element
+  Polymer(jviz_toast);
 </script>
