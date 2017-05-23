@@ -96,6 +96,9 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
     //Display the toast
     this.visible = true;
 
+    //Check the duration
+    if(this.duration === -1){ return; } 
+
     //Set the time out function
     return jviz.time_out(this.duration, function()
     {
@@ -107,7 +110,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
       {
         //Do the callback method
         return cb();
-      } 
+      }
     });
   };
 
