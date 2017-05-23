@@ -88,7 +88,7 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
   };
 
   //Show the toast
-  jviz_toast.show = function()
+  jviz_toast.show = function(cb)
   {
     //Save this
     var self = this;
@@ -97,7 +97,18 @@ The Jviz Project is under the MIT License. See https://github.com/jviz/jviz/blob
     this.visible = true;
 
     //Set the time out function
-    setTimeout(function(){ return self.hide(); }, this.duration);
+    return jviz.time_out(this.duration, function()
+    {
+      //Hide the toast
+      self.hide();
+
+      //Check the callback method
+      if(typeof cb === 'function')
+      {
+        //Do the callback method
+        return cb();
+      } 
+    });
   };
 
   //Hide the toast
